@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DIGITAL CLOCK</title>
+	<meta charset="utf-8">
+	<link rel="icon" href="bg.jpg">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="Digital clock project, v1">
+	<meta name="author" content="Livingstone David, +255 752 884 182, liveja.ld@gmail.com">
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+			box-sizing: border-box;
+			font-family: sans-serif;
+		}
+		.full_width{width: 100%;}
+		.light_text{color: #fff;}
+		.dark_text{color: #000;}
+		.capitalize_text{text-transform: capitalize;}
+		.lowercase_text{text-transform: lowercase;}
+		.uppercase_text{text-transform: uppercase;}
+		.wide{
+			letter-spacing: .1em;
+			word-spacing: .2em;
+		}
+		.wider{
+			letter-spacing: .3em;
+			word-spacing: .5em;
+		}
+		.tex_shadow_light{text-shadow: .02em .02em #fff;}
+		.tex_shadow_cyan{text-shadow: .02em .02em #0ff;}
+		.tex_shadow_dark{text-shadow: .02em .02em #000;}
+		body{
+			background: #f5f5f5 url(bg.jpg) no-repeat center fixed;
+			background-size: cover;
+		}
+		.clock_container{
+			height: 100%;
+			position: fixed;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		#time{font-size: 2.5em;}
+		#date_container{
+			left: .5%;
+			bottom: .5%;
+			font-size: 1.2em;
+			position: absolute;
+		}
+		/*on smaller screens*/
+		@media (max-width: 250px) {
+			#time{font-size: 2em}
+			#date_container{font-size: 1em;}
+		}
+	</style>
+</head>
+<body>
+	<div class="clock_container full_width">
+		<span id="time" class="wider dark_text tex_shadow_cyan">loading...</span>
+	</div>
+	<span id="date_container" class="wide dark_text tex_shadow_light"></span>
+</body>
+<script type="text/javascript">
+	// call the timer() fucntion on page load
+	window.onload = () => {timer();}; 
+
+	// timer() function definition
+	function timer() {
+		const d = new Date();
+		// time information
+		const hr = prependZero(d.getHours());
+		const min = prependZero(d.getMinutes());
+		const sec = prependZero(d.getSeconds());
+		// day information
+		const date = d.getDate();
+		const month = checkMonth(d.getMonth());
+		const year = d.getFullYear();
+		const day = checkWeekDay(d.getDay());
+
+		// set the time & date to their respective containers
+		document.querySelector('#time').innerText = `${hr}:${min}:${sec}`;
+		document.querySelector('#date_container').innerText = `${day}, ${date} ${month} ${year}`;
+
+		// play a clock-ticker sound effect every second (~ The line below was originally commented out, un-comment it if you want this feature ~)
+		// playSound('sounds/clock_ticker.mp3');
+		
+		if (min==0 & sec==0) {playSound('sounds/oclock_sound_effect.wav');} // play another sound only if its o'clock
+		
+		setTimeout(timer, 1000); // recursivelly call this function again(every 1second)
+	}
+
+	// prepend 0 if less than ten
+	function prependZero (i) {return i<10 ? '0'+i : i;}
+
+	// checks a day name
+	function checkWeekDay (day_index) {
+		const week_days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+		return week_days[day_index];
+	}
+
+	// checks a month name
+	function checkMonth (month_index) {
+		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		return months[month_index];
+	}
+
+	// paly a sound
+	function playSound (sound_path) {
+		const sound = new Audio();
+		sound.src = sound_path;
+		sound.play();
+	}
+</script>
+</html>
