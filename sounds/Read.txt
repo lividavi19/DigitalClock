@@ -9,7 +9,7 @@ There are no hidden costs or need to sign-up.
 
 
 
-License: The sound effect(oclock_sound_effect.wav) is permitted for commercial use under license Creative Commons Attribution 4.0 International Licens
+License: The sound effect(oclock_sound_effect.wav & clock_ticker.mp3) is permitted for commercial use under license Creative Commons Attribution 4.0 International Licens
 
 
 http://www.orangefreesounds.com/
