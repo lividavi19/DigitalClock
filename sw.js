@@ -3,10 +3,11 @@ const app_cache_name = `digital_clock_app_cache_v${SW_VERSION}`;
 const app_static_resources = [
 	`.`,
 	`index.html`,
-	`sounds/clock_ticker.mp3`,
-	`sounds/oclock_sound_effect.wav`,
+	`img/bg.jp`,
 	`img/icons/ic_192.png`,
-	`img/icons/ic_512.png`
+	`img/icons/ic_512.png`,
+	`sounds/clock_ticker.mp3`,
+	`sounds/oclock_sound_effect.wav`
 ];
 
 // install event
