@@ -3,10 +3,11 @@
 <head>
 	<title>DIGITAL CLOCK</title>
 	<meta charset="utf-8">
-	<link rel="icon" href="bg.jpg">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2">
-	<meta name="description" content="Digital clock project, v1">
+	<link rel="manifest" href="manifest.json">
+	<link rel="icon" href="img/icons/ic_192.png">
+	<meta name="description" content="My digital clock app">
 	<meta name="author" content="Livingstone David, +255 752 884 182, liveja.ld@gmail.com">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2">
 	<style type="text/css">
 		*{
 			margin: 0;
@@ -32,7 +33,7 @@
 		.tex_shadow_cyan{text-shadow: .02em .02em #0ff;}
 		.tex_shadow_dark{text-shadow: .02em .02em #000;}
 		body{
-			background: #f5f5f5 url(bg.jpg) no-repeat center fixed;
+			background: #f5f5f5 url(img/bg.jpg) no-repeat center fixed;
 			background-size: cover;
 		}
 		.clock_container{
@@ -63,6 +64,13 @@
 	<span id="date_container" class="wide dark_text tex_shadow_light"></span>
 </body>
 <script type="text/javascript">
+	// registering a service worker
+	if (navigator.serviceWorker) {
+		navigator.serviceWorker.register('sw.js').catch(error => {
+			consoleLog(`Error registering a service worker`, error);
+		});
+	}
+
 	// call the timer() function on page load
 	window.onload = () => {timer();}; 
 
